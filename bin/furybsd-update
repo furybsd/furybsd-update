@@ -6,4 +6,4 @@ if [ "$(id -u)" != "0" ]; then
   exit 1
 fi
 
-cd /usr/local/bin/ && fetch https://raw.githubusercontent.com/furybsd/furybsd-update/master/bin/furybsd-update-tool
+cd /usr/local/bin/ && fetch https://raw.githubusercontent.com/furybsd/furybsd-ports/master/furybsd-update-ports
