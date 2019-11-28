@@ -6,25 +6,8 @@ if [ "$(id -u)" != "0" ]; then
   exit 1
 fi
 
-pkgcheck=$(pkg info furybsd-update | grep Version | awk '{ print $3 }')
-gitcheck=$(git ls-remote --tags https://github.com/furybsd/furybsd-wallpapers | awk '{ print $2}' | cut -d'/' -f3 | head -n 1)
-
-echo "pkg version is ${pkgcheck}"
-echo "git version is ${gitcheck}"
-
-if [ "${gitcheck}" -eq "${pkgcheck}" ]; then
-  echo "FuryBSD ports are up to date"
-  exit 0
-fi
-
-if [ "${gitcheck}" -gt "${pkgcheck}" ]; then
-  echo "FuryBSD ports need updating"
-  cd /usr/local/bin/ && fetch https://raw.githubusercontent.com/furybsd/furybsd-ports/master/furybsd-update-ports
-  cd /usr/local/bin/ && fetch https://raw.githubusercontent.com/furybsd/furybsd-ports/master/furybsd-make-ports
-  chmod +x /usr/local/bin/furybsd-update-ports
-  chmod +x /usr/local/bin/furybsd-make-ports
-  furybsd-update-ports
-else
-  echo "FuryBSD ports are up to date"
-  exit 0
-fi
+cd /usr/local/bin/ && fetch https://raw.githubusercontent.com/furybsd/furybsd-ports/master/furybsd-update-ports
+cd /usr/local/bin/ && fetch https://raw.githubusercontent.com/furybsd/furybsd-ports/master/furybsd-make-ports
+chmod +x /usr/local/bin/furybsd-update-ports
+chmod +x /usr/local/bin/furybsd-make-ports
+furybsd-update-ports
