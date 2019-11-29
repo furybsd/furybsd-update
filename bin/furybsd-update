@@ -7,8 +7,8 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 # Notify that we require git
-if [ ! -f "/usr/local/bin/git" ]
-  echo "This script requires git or git-lite" 1>&2
+if [ ! -f "/usr/local/bin/git" ] ; then
+  echo "This script requires git or git-lite"
   exit 1
 fi
 
