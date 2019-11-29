@@ -6,6 +6,12 @@ if [ "$(id -u)" != "0" ]; then
   exit 1
 fi
 
+# Notify that we require git
+if [ ! -f "/usr/local/bin/git" ]
+  echo "This script requires git or git-lite" 1>&2
+  exit 1
+fi
+
 cd /usr/local/bin/ && fetch https://raw.githubusercontent.com/furybsd/furybsd-ports/master/furybsd-update-ports
 cd /usr/local/bin/ && fetch https://raw.githubusercontent.com/furybsd/furybsd-ports/master/furybsd-make-ports
 chmod +x /usr/local/bin/furybsd-update-ports
